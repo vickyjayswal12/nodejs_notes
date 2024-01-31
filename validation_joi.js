@@ -8,14 +8,16 @@ const validate_middle=(req,resp,next)=>{
         name:joi.string().required(),
         number:joi.number(),      //by default optional
         age:joi.number().min(20).optional(),
-        password:joi.string().required(),
+        password:joi.string().required().pattern(new RegExp('^[a-zA-Z]{3,6}$')),
         confuirm_pass:joi.string().valid(joi.ref('password')).required(),
 
          
         items:joi.object().keys({    //nested 
             name:joi.string().required(),
             stock:joi.number()
-        })
+        }),
+
+        weight:joi.number().when('age',{is:20,then:joi.required(),otherwise:joi.optional()})
     }).unknown(true)  //unknown(true) is used for if we send another key from schema by default it is false
     const {error}=schema.validate(req.body,{abortEarly:false})  //{abortEarly:false} send all keys error withouth it i
     // console.log(res);
