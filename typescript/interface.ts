@@ -20,3 +20,20 @@ interface persion1{
 interface persion1{
     sirname1:string
 }
+
+
+
+//inter face with function property
+// interface IAuth {
+//     username: string;
+//     password: string;
+//     login(username: string, password: string): boolean;  //here username password is fun parameter difference with object usernmae and pass.
+// }
+
+// const auth: IAuth = {
+//     username: 'codersgyan',
+//     password: 'secret',
+//     login(username: string, password: string) {  //all variable type and function return type should be same as interface
+//       return true;
+//     }
+// }

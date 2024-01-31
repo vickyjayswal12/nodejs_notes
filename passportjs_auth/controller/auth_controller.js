@@ -3,7 +3,7 @@
 const connection=require('../moduls/connection');
 // const { set_user, get_user } = require('../helper/session');
 // const { get_token, get_refresh_token } = require('../helper/jwt');
-const passport = require('passport');
+
 
 const register_controller=async(req,resp)=>{
     console.log(req.body)
