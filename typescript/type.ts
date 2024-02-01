@@ -1,5 +1,6 @@
 //all concept learn from coders gyan channel
 //if tsc command not work than use tsc.cmd like tsc.cmd type.ts
+//and also we can add compile file into specific folder into some change into typescript config file
 let a:string="vicky"  //datatype define
 // let arr:number[]=[1,2,3,"3"]  //if we try string than send error
 
