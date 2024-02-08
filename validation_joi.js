@@ -18,7 +18,7 @@ const validate_middle=(req,resp,next)=>{
         }),
 
         weight:joi.number().when('age',{is:20,then:joi.required(),otherwise:joi.optional()})
-    }).unknown(true)  //unknown(true) is used for if we send another key from schema by default it is false
+    }).unknown(true)  //unknown(true) is used for if we send another key from schema (by default it is false)
     const {error}=schema.validate(req.body,{abortEarly:false})  //{abortEarly:false} send all keys error withouth it i
     // console.log(res);
     if(error)
