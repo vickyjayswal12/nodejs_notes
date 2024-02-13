@@ -1,0 +1,6 @@
+reference from code improve youtube channel:----
+
+microservices is use to create multiple services run in different port so that if any services stop than they dont stop all application
+services is like moduls in nodejs (like file where define same type of controller)
+in normal nodejs project (monolith) we are all code (moduls) put intosingle folder
+but in services we make some small project and all connected with api gateway
