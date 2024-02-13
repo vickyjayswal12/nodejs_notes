@@ -3,13 +3,16 @@
 //there multiple template engine like ejs 
 const path=require('path')
 const express=require('express');
-const { profile } = require('console');
+const { profile, log } = require('console');
 const app=express();
 console.log(__dirname)
 const dir=path.join(__dirname,'pages')
 console.log(dir)
 app.set('view engine','ejs')  //view engine is one type of template engine and ejs is package
 ///every template engine require views folder
+console.log(app.get("views")); //we can see in which folder is our template by default have views folder but we can change folder
+// app.set("views",path.join(__dirname,'templates')) we can store all ejs file into temlates folder now
+// console.log(app.get("views"));
 app.get("",(req,resp)=>{
     resp.sendFile(`${dir}/index.html`);
 })
