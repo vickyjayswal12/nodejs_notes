@@ -1,7 +1,7 @@
 import nodemailer from "nodemailer";
 import { generateVerificationToken } from "./verifytToken";
 
-export const verifymail = (tomailer,role) => {
+export const verifymail = (tomailer) => {
   var transporter = nodemailer.createTransport({
     service: "gmail",
     auth: {
@@ -16,7 +16,7 @@ export const verifymail = (tomailer,role) => {
     to: tomailer,
     subject: "Sending Email using Node.js",
     text: "That was easy!",
-    html: `<p>Click <a href="http://localhost:3001/${role}/verify?email=${tomailer}&token=${token}">here</a> to verify your email.</p>`,
+    html: `<p>Click <a href="http://localhost:5000/verify?email=${tomailer}&token=${token}">here</a> to verify your email.</p>`,
   };
 
   transporter.sendMail(mailOptions, function (error, info) {

@@ -6,6 +6,7 @@ export const generateVerificationToken = (tomailer) => {
   verificationTokens[tomailer] = token;
   return token;
 };
+
 export const verifyVerificationToken = (token, tomailer, req, res) => {
   if (verificationTokens[tomailer] === token) {
     // Email verified successfully

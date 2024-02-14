@@ -1,0 +1,17 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.nav{
+    width:100vw;
+    background-color: grey;
+    color: white;
+
+}
+ul{
+    display: flex;
+    flex-direction: row;
+}
+li{
+    margin: 20px;
+}
