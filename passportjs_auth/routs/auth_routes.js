@@ -25,9 +25,10 @@ const { register_controller,login_controller } = require('../controller/auth_con
       });
     }
   ));
- // it store user'd user id in session
+ // it store user's user id in session
   passport.serializeUser((user, done) => {
-    done(null, user.username);
+    console.log("user in serialize",user)
+    done(null, user.username); //send into   passport.deserializeUser((username, done) 
   });
   
   // Deserialize username  from session using cookies(done by express sesion library) and get user details from db
@@ -48,5 +49,19 @@ rout.post('/login',
     res.send(req.user)
   });
 
+  rout.get('/logout', function(req, res){
+    req.logout(function(err) {
+      if (err) {
+        console.error("Error during logout:", err);
+        return next(err);
+      }});
+    res.redirect('/');
+  });
 
+
+  rout.get("/get_session",(req,resp)=>{
+    console.log(req.user)
+    console.log(req.session.userId);
+        resp.send(req.session)
+  })
 module.exports=rout;
