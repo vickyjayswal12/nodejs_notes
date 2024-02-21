@@ -32,6 +32,7 @@ const { register_controller,login_controller } = require('../controller/auth_con
   });
   
   // Deserialize username  from session using cookies(done by express sesion library) and get user details from db
+  //Deserialize User: When a subsequent request comes in(every request which comes server), Passport will deserialize the user from the session using passport.deserializeUser and make it available in req.user.
   passport.deserializeUser((username, done) => {
     connection.query('SELECT * FROM user WHERE username = ?', [username], (err, results) => {
       if (err) return done(err);
