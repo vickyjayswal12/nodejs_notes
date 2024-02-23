@@ -1,0 +1,1 @@
+after serverless deploy when your practicl done tham must delet stack in aws cloudformation(into stack there are multiple resources are alloted which auto create)
