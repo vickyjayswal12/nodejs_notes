@@ -1,0 +1,28 @@
+service: my-serverless-app
+
+provider:
+  name: aws
+  runtime: nodejs14.x
+  region: us-east-1 # Change to your desired region
+  environment:
+    COGNITO_CLIENT_ID: YOUR_COGNITO_CLIENT_ID
+
+functions:
+  register:
+    handler: handler.register
+    events:
+      - http:
+          path: register
+          method: post
+  login:
+    handler: handler.login
+    events:
+      - http:
+          path: login
+          method: post
+  profile:
+    handler: handler.profile
+    events:
+      - http:
+          path: profile
+          method: post
