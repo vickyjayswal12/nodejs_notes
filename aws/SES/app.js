@@ -8,3 +8,4 @@ const ses_config={
     region:'ap-south-1'
 }
 console.log(process.env.NAME);
+console.log(typeof(process.env.NAME));
