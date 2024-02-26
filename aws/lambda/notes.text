@@ -1,0 +1,7 @@
+fun(event,context,callback)
+{
+
+}
+//event have details of request (in event have rquest event like have http than hhtp mathod ,pathparmas and query params)
+context is related to function run when function timelimit, function name
+callback(error,anydata)

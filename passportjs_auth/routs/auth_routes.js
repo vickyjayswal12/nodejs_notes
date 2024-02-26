@@ -21,7 +21,7 @@ const { register_controller,login_controller } = require('../controller/auth_con
           return done(null, false, { message: 'Incorrect password.' });
         }
   
-        return done(null, user);
+        return done(null, user); //null means there was no error done(error, any data)
       });
     }
   ));
