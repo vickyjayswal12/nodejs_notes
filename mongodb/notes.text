@@ -1,0 +1,59 @@
+
+Q-in mongodb monggose model create collection
+
+
+
+In MongoDB, Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js. Mongoose provides a straightforward schema-based solution to model your application data.
+
+When you define a Mongoose model, it does not directly create a collection in MongoDB. Instead, Mongoose implicitly creates a collection based on the model name you specify when you define it.
+
+Here's how you can define a Mongoose model and perform operations on it, which indirectly leads to the creation of a collection:
+
+1. **Define a Mongoose Schema**: First, you define a Mongoose schema, which represents the structure of documents within a collection.
+
+```javascript
+const mongoose = require('mongoose');
+
+// Define a Mongoose schema
+const userSchema = new mongoose.Schema({
+    name: String,
+    email: String,
+    age: Number
+});
+
+// Create a Mongoose model based on the schema
+const User = mongoose.model('User', userSchema);
+```
+
+2. **Perform Operations on the Model**: Once you've defined the schema and model, you can perform CRUD (Create, Read, Update, Delete) operations using the model.
+
+```javascript
+// Connect to MongoDB (assuming you've set up your MongoDB connection)
+mongoose.connect('mongodb://localhost:27017/my_database', { useNewUrlParser: true, useUnifiedTopology: true });
+
+// Create a new document
+const newUser = new User({
+    name: 'John Doe',
+    email: 'john@example.com',
+    age: 30
+});
+
+// Save the document to the database
+newUser.save((err, user) => {
+    if (err) {
+        console.error(err);
+    } else {
+        console.log('User saved successfully:', user);
+    }
+});
+```
+
+When you perform operations using the `User` model, Mongoose implicitly creates a collection named "users" (lowercase and pluralized version of the model name "User" by default). If you want to specify a custom collection name, you can do so when defining the model:
+
+```javascript
+const User = mongoose.model('User', userSchema, 'my_custom_collection');
+```
+
+In this case, Mongoose will use the collection named "my_custom_collection" instead.
+
+So, while Mongoose doesn't explicitly create collections, it manages the interaction with MongoDB on your behalf, and collections are created as you interact with the defined models.
