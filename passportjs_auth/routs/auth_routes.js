@@ -58,6 +58,15 @@ rout.post('/login',
       }});
     res.redirect('/');
   });
+//what happen after logout
+// Yes, you're correct. req.logout() is a function provided by Passport.js that removes the user's details from the session, effectively logging the user out.
+
+// When req.logout() is called:
+
+// Passport.js removes the user's details from the session store.
+// Subsequent requests from the user will not be recognized as authenticated because their details are no longer stored in the session.
+// This function essentially clears the user's authentication state, forcing them to log in again to access protected resources.
+
 
 
   rout.get("/get_session",(req,resp)=>{
