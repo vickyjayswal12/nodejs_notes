@@ -119,3 +119,34 @@ In Amazon Cognito, the `PreSignUp` trigger is one of the AWS Lambda triggers tha
 
 These are just a few examples of the Lambda triggers available in Amazon Cognito. Each trigger provides developers with the flexibility to extend and customize the authentication and user management workflows according to their application requirements.
 
+
+
+
+
+
+Q-when we register into aws icognito then icognito where store user data and how to check at time of signup
+When a user registers with Amazon Cognito, the user data is stored securely within the Amazon Cognito service. Amazon Cognito provides a user directory called "User Pools" to manage user authentication and authorization. User data is stored within these user pools.
+
+Here's how user data storage works in Amazon Cognito:
+
+1. **User Pools**:
+   - User Pools are containers for user data in Amazon Cognito.
+   - When you create a User Pool, Amazon Cognito automatically provisions a user directory for you.
+   - User Pools store user attributes such as username, email address, phone number, and custom attributes defined by you.
+
+2. **Storage Mechanism**:
+   - User data in User Pools is stored securely and is accessible only through the Amazon Cognito API or the AWS Management Console.
+   - Amazon Cognito manages the scalability, availability, and security of user data storage.
+
+3. **Accessing User Data**:
+   - During the signup process, Amazon Cognito automatically handles the storage of user data when a user registers.
+   - As a developer, you can access user data programmatically using the Amazon Cognito SDKs or APIs provided by AWS.
+   - Additionally, you can view and manage user data through the AWS Management Console for Amazon Cognito.
+
+4. **Validation and Verification**:
+   - Amazon Cognito performs validation and verification of user data during the signup process based on the validation rules and settings configured for the User Pool.
+   - This includes validation of email addresses, phone numbers, and any custom validation rules you define.
+
+To check user data at the time of signup, you can use the AWS Management Console to view the registered users in your User Pool. You can also use the Amazon Cognito APIs to programmatically retrieve user data if needed.
+
+In summary, user data in Amazon Cognito is stored securely within User Pools, and developers can access and manage this data using AWS SDKs, APIs, or the AWS Management Console.
