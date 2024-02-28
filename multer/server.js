@@ -35,8 +35,8 @@ app.get('/',(req,resp)=>{
     resp.render('index');
 })
 
-// upload.single() is midleware which store file and profileimg is a file name in form data
-app.post('/upload',upload.single('profileimg'),(req,resp)=>{
+// upload.single() is midleware which store file and profileimg(which was used into form file field name) is a file name in form data
+app.post('/upload',upload.single('profileimg'),(req,resp)=>{ 
 console.log(req.body)  //[Object: null prototype] {} becouse in form there not any text field
 console.log(req.file)// file send uoload middleware in body
 resp.redirect('/')
