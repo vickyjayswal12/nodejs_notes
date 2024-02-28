@@ -1,0 +1,11 @@
+in packege.json have inbuild script like start that time only requir run this script simple npm start(inbuild stript)
+
+but which was not define than we have to requir use npm run userdefine script
+like server than require npm run server 
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index" //inbuild
+    "server: "node index"
+  },
+
+  "enter first letter of inbuild then show available inbuild script"
