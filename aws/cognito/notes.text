@@ -150,3 +150,23 @@ Here's how user data storage works in Amazon Cognito:
 To check user data at the time of signup, you can use the AWS Management Console to view the registered users in your User Pool. You can also use the Amazon Cognito APIs to programmatically retrieve user data if needed.
 
 In summary, user data in Amazon Cognito is stored securely within User Pools, and developers can access and manage this data using AWS SDKs, APIs, or the AWS Management Console.
+
+
+what is app client into cognito
+
+
+In Amazon Cognito, an "app client" refers to a client-side application or service that interacts with the Cognito service to authenticate users and access AWS resources. When you create a user pool in Amazon Cognito, you typically create one or more app clients within that user pool.
+
+App clients are essentially configurations that represent the applications that will be using the user pool for authentication purposes. Each app client has its own set of settings and configurations, such as OAuth 2.0 settings, allowed redirect URIs, and client secret generation.
+
+When a user tries to authenticate through an app client, they provide their credentials (such as username and password) to the client application, which then communicates with Cognito to authenticate the user. If the authentication is successful, the app client receives tokens (such as access tokens, ID tokens, and refresh tokens) that can be used to access resources on behalf of the user.
+
+App clients play a crucial role in enabling secure authentication and authorization within Amazon Cognito, allowing client applications to integrate seamlessly with Cognito user pools.
+
+
+
+//cudtom sign in (authentication) using opt
+create three lambda function define auth challenge,define auth challeng and varify auth challenge answer 
+when at time signin method in cognito first trigger define and then create auth challeng
+and than confirm otp   which was entered by user (received in user mail) call cognito otp varify method method than trigger varify authchallenge anser lambda function 
+if answer was true than send tokens
