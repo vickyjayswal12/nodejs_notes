@@ -1,0 +1,26 @@
+expresssion used when you have to use some operarion in same document at time of running query 
+syntax:-
+{$expr:{operator:[fild,value]}}
+exm find product which price greater than 20
+db.products.find({$expr:{$gt:['$price',20]}}) 
+
+like 
+find sales where (quentity * price ) is greater than target price
+collectins is like that
+[
+    {
+        _id:1,
+        quentity:2,
+        price:200,
+        targetprice:500
+    },
+    {
+        _id:2,
+        quentity:2,
+        price:200,
+        targetprice:300
+    }
+]
+should be answer id-2 document 
+
+db.sales.find({$expr:{$gt:[{$multiply:['$quentity','$price']},targetprice]}})

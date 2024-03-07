@@ -57,3 +57,7 @@ const User = mongoose.model('User', userSchema, 'my_custom_collection');
 In this case, Mongoose will use the collection named "my_custom_collection" instead.
 
 So, while Mongoose doesn't explicitly create collections, it manages the interaction with MongoDB on your behalf, and collections are created as you interact with the defined models.
+
+
+
+//all reference get from vinod thapa youtube channel tutorial

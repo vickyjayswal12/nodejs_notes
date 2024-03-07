@@ -1,0 +1,2 @@
+syntax :-
+db.collectionName.find({'fildname':{$operator:value}})

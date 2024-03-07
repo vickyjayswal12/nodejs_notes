@@ -1,0 +1,13 @@
+exluding not all logical operator work on array
+syntax 
+db.collectionName.find({$logical_operator:[{condition1},{condition2},...]})
+
+$and :--
+exm:
+db.products.find({$and:[{price:{$gt:20}},{name:'a'}]})
+
+if we pass in find method multiple fildname and value than mongodb treat as a and condition1
+db.products.find({price:{$gt:20},name:'a'})
+
+not:--
+db.collectionName.find({price:{$not:{$gt:20}}})

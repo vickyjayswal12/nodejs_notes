@@ -1,0 +1,142 @@
+by using aggregation we can chaining in queries
+                
+Aggregation in MongoDB allows you to perform various data manipulation tasks on your collections. It provides a way to process data records and return computed results. MongoDB's aggregation framework is powerful and flexible, allowing you to perform a wide range of operations, such as filtering, grouping, sorting, transforming, and calculating aggregate values.
+
+Here's a basic overview of how aggregation works in MongoDB:
+
+1. **Pipeline Stages**: Aggregation operations in MongoDB are built using stages. Each stage represents a specific operation or transformation applied to the documents in the collection. These stages are executed sequentially, with the output of one stage becoming the input for the next.
+
+2. **Operators**: MongoDB provides a wide range of aggregation operators that you can use within each stage to perform specific tasks. These operators allow you to manipulate data, perform calculations, and aggregate results.
+
+3. **Aggregation Pipeline**: The aggregation pipeline is a series of these stages that you define to process your data. Each stage can filter, transform, or aggregate the data in some way before passing it on to the next stage.
+
+4. **Output**: At the end of the pipeline, you can specify how you want the results to be returned. You can output the results as documents in a new collection, as a cursor, or simply return them to the client.
+
+Here's an example of a simple aggregation pipeline in MongoDB:
+
+```javascript
+db.sales.aggregate([
+  { $match: { status: "completed" } }, // Match documents where status is "completed"
+  { $group: { _id: "$product", totalSales: { $sum: "$amount" } } }, // Group by product and calculate total sales
+  { $sort: { totalSales: -1 } } // Sort by total sales in descending order
+])
+```
+
+In this example:
+
+- `$match` is a filtering stage that filters documents based on a given condition.
+- `$group` is an aggregation stage that groups documents together based on a specified key and calculates aggregate values for each group.
+- `$sum` is an aggregation operator used to calculate the sum of values within a group.
+- `$sort` is a sorting stage that sorts the documents based on a specified field and order.
+
+This pipeline first filters documents where the status is "completed", then groups them by product and calculates the total sales for each product, and finally sorts the results by total sales in descending order.
+
+This is just a basic example, and MongoDB's aggregation framework supports many more stages and operators, allowing for complex data processing and analysis tasks.
+
+note:first mathod output will be second method's input like that do chaining
+
+
+$ match work as itis like find method with condition
+
+in  { $group: { _id: "$product", totalSales: { $sum: "$amount" } } } //find sum of  same company's all amount which was grouped by group with sam company 
+
+ { $group: { _id: "$product", totalSales: { $sum: 1} } } //no of same company grouped by grop
+
+
+
+ Q-find no. of each type of product whose price greatr than 50
+ db.product.aggregate([{$match:{price:{$gt:50}}},{$group:{_id:"$name",total_prod:{$sum:1}}}]) 
+
+
+
+ **********$project*********************
+ $project is same asit in projection fild whicl field require 
+  but in $project we can do some extra operations
+
+  Q-find all price in product with 20% discount
+
+  db.product.aggregate([{ $project: { price:1, discountprice: { $multiply:['$price,0.8]} } }])
+
+
+
+  *************$push,$addToset and $unwind in aggregate
+
+  Certainly! Let's go through each of these aggregation operators in MongoDB:
+
+1. `$push`: The `$push` operator is used to append a specified value to an array field in each document. It is particularly useful when you want to aggregate values into an array.
+
+   Example:
+   ```javascript
+   db.collection.aggregate([
+     {
+       $group: {
+         _id: "$category",
+         items: { $push: "$name" } // Push each name into an array
+       }
+     }
+   ])
+   ```
+
+   In this example, documents are grouped by the `category` field, and for each group, the names are pushed into an array called `items`.
+
+2. `$unwind`: The `$unwind` operator is used to deconstruct an array field from the input documents to output a document for each element in the array. This is useful when you want to perform further operations on individual elements of an array.
+
+   Example:
+   ```javascript
+   db.collection.aggregate([
+     { $unwind: "$tags" } // Unwind the tags array
+   ])
+   ```
+
+   In this example, if the `tags` field is an array, the documents will be split into multiple documents, each containing one of the elements from the `tags` array.
+
+3. `$addToSet`: The `$addToSet` operator is used to add a value to an array field only if it does not already exist in the array. It ensures that values are unique within the array.
+
+   Example:
+   ```javascript
+   db.collection.aggregate([
+     {
+       $group: {
+         _id: "$category",
+         uniqueTags: { $addToSet: "$tags" } // Add unique tags to an array
+       }
+     }
+   ])
+   ```
+
+   In this example, documents are grouped by the `category` field, and unique tags from each group are added to an array called `uniqueTags`.
+
+These are powerful operators that allow for flexible data manipulation within MongoDB's aggregation framework. They can be combined with other stages and operators to perform complex transformations and aggregations on your data.
+
+
+
+***********$limit and $skip
+same asetis in find work also work in aggregate
+
+
+
+**********$filter*******
+
+filter is use when we have require to filter some fiels in array 
+Q-from student filter grades from every doc where grades.score grater than 90
+
+document like that 
+{
+  _id: 3,
+  name: 'vicky',
+  grades: [
+    {
+      subject: 'Hindi',
+      score: 95
+    },
+    {
+      subject: 'Science',
+      score: 90
+    }
+  ]
+}
+
+db.student.aggregate([{$project:{name:1,mogrades:{$filter:{input:"$grades",as:'val',cond:{$gt:['$$val.score',90]}}}}}])
+
+
+{$filter:{input:"$grades",as:'val',cond:{$gt:['$$val.score',90]}}} //this will work as filter looping in array in js

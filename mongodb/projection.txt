@@ -1,0 +1,39 @@
+In MongoDB, projection refers to selecting only the necessary data fields to be returned in query results, rather than returning the entire document. This can be particularly useful when you only need specific fields from a document, as it can reduce network usage and improve query performance.
+
+Here's an example of how projection works in MongoDB:
+
+Suppose you have a collection called `books` with documents structured like this:
+
+```json
+{ "_id": 1, "title": "The Great Gatsby", "author": "F. Scott Fitzgerald", "genre": "Classic", "year": 1925 }
+{ "_id": 2, "title": "To Kill a Mockingbird", "author": "Harper Lee", "genre": "Fiction", "year": 1960 }
+{ "_id": 3, "title": "1984", "author": "George Orwell", "genre": "Dystopian", "year": 1949 }
+```
+
+Now, let's say you want to query the `books` collection but only want to retrieve the `title` and `author` fields:
+
+```javascript
+db.books.find({}, { title: 1, author: 1, _id: 0 })
+```
+
+In this example:
+
+- `{}` in the `find()` function specifies an empty query, meaning all documents will be returned.
+- `{ title: 1, author: 1, _id: 0 }` specifies the projection. Here, `1` indicates that the field should be included, while `0` indicates exclusion (except for `_id`, which is excluded by default if not explicitly included).
+
+The result of this query would be:
+
+```json
+{ "title": "The Great Gatsby", "author": "F. Scott Fitzgerald" }
+{ "title": "To Kill a Mockingbird", "author": "Harper Lee" }
+{ "title": "1984", "author": "George Orwell" }
+```
+
+As you can see, only the `title` and `author` fields are returned for each document, while the `_id` field is excluded.
+
+Projection can significantly reduce the amount of data transferred over the network and improve query performance, especially when dealing with large collections or documents with many fields.
+
+
+in projection all field shoul be 1 or 0 both not possible exception _id
+db.books.find({}, { title: 1, author: 0, _id: 0 })    //throw error
+

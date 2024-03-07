@@ -1,0 +1,41 @@
+update one:
+syntax:
+db.collectionName.updateOne(
+    {filter},
+    {
+        $set:{ existing field:new value,new field:new value//....};
+    }
+)
+
+update Many:
+syntax:
+db.collectionName.updateMany(
+    {filter},
+    {
+        $set:{ existing field:new value,//....};
+    }
+)
+
+
+
+****************renaming and removing*****************
+removing:----
+this is use remove (delete ) field from any document
+
+db.collectionName.updateOne(
+    {filter},
+    {
+        $unset:{fildname:1 };
+    }
+)
+
+renaming:-----
+
+db.collectionName.updateOne(
+    {filter},
+    {
+        $rename:{Oldfildname:"Newfieldname" };
+    }
+)
+
+(same as updateMany)

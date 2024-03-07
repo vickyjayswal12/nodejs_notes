@@ -1,0 +1,39 @@
+element operator used to any condition ralated to fild(element) 
+it is used check precondition like if field is exits than do operations ,and first check field type and field array length
+methods :-- 
+$exists:--
+syntax: {field:{$exists:<boolean>}}
+this will use this field exits or not
+exm:- find documents in which price field is exists
+db.products.find({price:{$exists:true}})
+
+if not exits than
+db.products.find({price:{$exists:false}})
+
+exm2: find documents in which price field is exists and price greater than 20
+db.products.find({price:{$exists:true},price:{$gt:20}})
+
+
+$type:-
+syntax: {field:{$type:<bson-data-type>}}
+
+
+exm: find if price is number
+db.products.find({price:{$type:'number'}})
+
+
+
+
+$size:--
+is use in document any field's value in array than this will use to find that length
+syntax:{field:{$size:<array-length>}}
+
+$size operator typically returns the number of elements in an array or the number of characters in a string. Here's a brief example of how it can be used in MongoDB's query language, which supports the $size operator:
+
+Suppose you have a collection called products with documents structured like this:
+{ "_id": 1, "name": "Product 1", "tags": ["electronics", "gadgets"] }
+{ "_id": 2, "name": "Product 2", "tags": ["electronics", "accessories", "cables"] }
+{ "_id": 3, "name": "Product 3", "tags": ["clothing", "accessories"] }
+
+Now, let's say you want to find all documents where the tags array has exactly two elements. You can use the $size operator for this
+db.products.find({ tags: { $size: 2 } })

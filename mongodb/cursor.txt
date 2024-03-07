@@ -1,0 +1,20 @@
+cursor is like stream in nodejs by using cursor mongodb server provide large data into chungs
+curser method count(),limit(),skip(),sort()
+
+sort:
+exm 
+db.products.find().sort({price:1})
+1 for ascending order and -1 for descending
+
+skip() //it will work right to left
+exm db.products.find().limit(2)
+output:
+1
+2
+exm db.products.find().limit(2).skip(1)
+2
+3
+
+
+
+
