@@ -37,3 +37,31 @@ interface persion1{
 //       return true;
 //     }
 // }
+
+// First interface
+interface Dog {
+  name: string;
+  breed: string;
+}
+
+// Second interface
+interface Dog {
+  age: number;
+  color: string;
+}
+
+// Merged interface
+interface Dog {
+  name: string;
+  breed: string;
+  age: number;
+  color: string;
+}
+
+// Usage
+const myDog: Dog = {
+  name: "Buddy",
+  breed: "Labrador",
+  age: 3,
+  color: "Golden"
+};
